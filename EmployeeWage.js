@@ -6,6 +6,7 @@ class EmployeePayrollData{
         this.salary = params[2];
         this.gender = params[3];
         this.startDate = params[4];
+        this.pincode = params[5];
     }
     get id(){return this._id;}
     set id(id){
@@ -39,18 +40,25 @@ class EmployeePayrollData{
         else throw "Enter valid date";
     }
 
+    get pincode(){return this._pincode;}
+    set pincode(pincode){
+        let pincodeRegex = RegExp("^[0-9]{6}$");
+        if(pincodeRegex.test(pincode))this._pincode = pincode;
+        else throw "Invalid Pincode"
+    }
+
     toString(){
         const options ={ year : "numeric", month : "long", day : "numeric"};
         const empDate = this.startDate === undefined ? "undefined" :
                         this.startDate.toLocaleDateString("en-US", options);
-        return "id = "+ this.id + ", name = "+ this.name +", salary = "+this.salary +", gender = "+ this.gender +", startDate = "+ empDate;
+        return "id = "+ this.id + ", name = "+ this.name +", salary = "+this.salary +", gender = "+ this.gender +", startDate = "+ empDate +" Pincode = " + this.pincode;
     }
 }
 
-let employeePayrollData = new EmployeePayrollData(1, "Arjun", 100, "M", new Date());
+let employeePayrollData = new EmployeePayrollData(1, "Arjun", 100, "M", new Date(), 503008);
 console.log(employeePayrollData.toString());
 try{
-let newEmployeePayrollData = new EmployeePayrollData(2, "Sai", 200, "M", new Date());
+let newEmployeePayrollData = new EmployeePayrollData(2, "Sai", 200, "M", new Date(), 400088);
 console.log(newEmployeePayrollData.toString());
 }catch(e){
     console.error(e);
