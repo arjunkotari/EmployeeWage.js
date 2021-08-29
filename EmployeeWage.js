@@ -7,6 +7,7 @@ class EmployeePayrollData{
         this.gender = params[3];
         this.startDate = params[4];
         this.pincode = params[5];
+        this.email = params[6];
     }
     get id(){return this._id;}
     set id(id){
@@ -47,18 +48,25 @@ class EmployeePayrollData{
         else throw "Invalid Pincode"
     }
 
+   get email(){return this._email;}
+   set email(email){
+       let emailRegex  = RegExp("^([a-z0-9]+.)+@([a-z0-9]+.)([a-z]+.)[a-z]{2,3}$");
+       if(emailRegex.test(email))this._email = email;
+       else throw "Invalid Email"
+   }
+
     toString(){
         const options ={ year : "numeric", month : "long", day : "numeric"};
         const empDate = this.startDate === undefined ? "undefined" :
                         this.startDate.toLocaleDateString("en-US", options);
-        return "id = "+ this.id + ", name = "+ this.name +", salary = "+this.salary +", gender = "+ this.gender +", startDate = "+ empDate +" Pincode = " + this.pincode;
+        return "id = "+ this.id + ", name = "+ this.name +", salary = "+this.salary +", gender = "+ this.gender +", startDate = "+ empDate +" Pincode = " + this.pincode + " Email = "+ this.email;
     }
 }
 
-let employeePayrollData = new EmployeePayrollData(1, "Arjun", 100, "M", new Date(), "503 008");
+let employeePayrollData = new EmployeePayrollData(1, "Arjun", 100, "M", new Date(), "503 008", "abc.xyz@gmail.co");
 console.log(employeePayrollData.toString());
 try{
-let newEmployeePayrollData = new EmployeePayrollData(2, "Sai", 200, "M", new Date(), "400 088");
+let newEmployeePayrollData = new EmployeePayrollData(2, "Sai", 200, "M", new Date(), "400 088", "abc@bridgelabz.co.in");
 console.log(newEmployeePayrollData.toString());
 }catch(e){
     console.error(e);
