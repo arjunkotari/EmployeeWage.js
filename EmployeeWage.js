@@ -42,7 +42,7 @@ class EmployeePayrollData{
 
     get pincode(){return this._pincode;}
     set pincode(pincode){
-        let pincodeRegex = RegExp("^[a-zA-Z*&%$#-]{0}[0-9]{6}$");
+        let pincodeRegex = RegExp("^[a-zA-Z*&%$#-]{0}[0-9]{6}[a-zA-Z*&%$#-]{0}$");
         if(pincodeRegex.test(pincode))this._pincode = pincode;
         else throw "Invalid Pincode"
     }
