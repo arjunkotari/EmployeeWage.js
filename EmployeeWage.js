@@ -42,7 +42,7 @@ class EmployeePayrollData{
 
     get pincode(){return this._pincode;}
     set pincode(pincode){
-        let pincodeRegex = RegExp("^[a-zA-Z*&%$#-]{0}[0-9]{6}[a-zA-Z*&%$#-]{0}$");
+        let pincodeRegex = RegExp("^[a-zA-Z*&%$#-]{0}[0-9 ]{6,7}[a-zA-Z*&%$#-]{0}$");
         if(pincodeRegex.test(pincode))this._pincode = pincode;
         else throw "Invalid Pincode"
     }
@@ -55,10 +55,10 @@ class EmployeePayrollData{
     }
 }
 
-let employeePayrollData = new EmployeePayrollData(1, "Arjun", 100, "M", new Date(), "503008");
+let employeePayrollData = new EmployeePayrollData(1, "Arjun", 100, "M", new Date(), "503 008");
 console.log(employeePayrollData.toString());
 try{
-let newEmployeePayrollData = new EmployeePayrollData(2, "Sai", 200, "M", new Date(), "400088");
+let newEmployeePayrollData = new EmployeePayrollData(2, "Sai", 200, "M", new Date(), "400 088");
 console.log(newEmployeePayrollData.toString());
 }catch(e){
     console.error(e);
